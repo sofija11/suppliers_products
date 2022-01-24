@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\ProductsExport;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
@@ -33,3 +34,9 @@ Route::get('/productsOfSupplier/{id}', [ProductController::class, 'showAllProduc
 
 //exportovanje po supplieru
 Route::get('/export/{id}', [ProductController::class, 'generateCsv']);
+
+//importovanje
+Route::get('/importCategory', [CategoryController::class, 'importCategory']);
+Route::get('/importSuppliers', [SupplierController::class, 'importSuppliers']);
+Route::get('/importProducts', [ProductController::class, 'importProducts']);
+Route::get('/importSuppliersProducts', [ProductController::class, 'importSupplierProducts']);

@@ -13,4 +13,9 @@ class Supplier extends Model {
         'name',
         'days_valid',
     ];
+
+    protected $casts = [
+        'name' => 'string',
+        'days_valid' => 'integer',
+    ];
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SupplierImport;
 use App\Providers\SupplierService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SupplierController extends Controller
 {
@@ -20,5 +22,11 @@ class SupplierController extends Controller
         if ($supplier !== null) {
             var_dump('deleted');
         }
+    }
+
+    public function importSuppliers(){
+        Excel::import(new SupplierImport, 'suppliers.csv');
+        
+        return redirect('/')->with('success', 'All good!');
     }
 }

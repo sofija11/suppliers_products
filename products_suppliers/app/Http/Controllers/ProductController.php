@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
+use App\Imports\ProductImport;
+use App\Imports\SupplierProductImport;
 use App\Models\Supplier;
 use App\Providers\ProductService;
 use Maatwebsite\Excel\Facades\Excel;
@@ -38,5 +40,17 @@ class ProductController extends Controller
         $date = now()->toDateString();
         $format_for_csv = $supplier_name . '_' . $date . '.csv';
         return Excel::download(new ProductsExport($id), $format_for_csv);
+    }
+
+    public function importProducts(){
+        Excel::import(new ProductImport, 'suppliers.csv');
+        
+        return redirect('/')->with('success', 'All good!');
+    }
+
+    public function importSupplierProducts() {
+        Excel::import(new SupplierProductImport, 'suppliers.csv');
+        
+        return redirect('/')->with('success', 'All good!');
     }
 }
