@@ -16,6 +16,7 @@ class ProductService {
         return $products;
     }
     
+    // updatuje proizvod
     public static function updateProduct(int $id) {
         // ovde bi se uzeli podaci za izmenu, iz request-a na primer, nakon popunjavanja forme
         $name = 'skoajsojda';
@@ -37,7 +38,8 @@ class ProductService {
     public static function showAllProductsFromSupplier(int $supplier_id) {
         $products = SupplierProduct::where('idSuplier','=', $supplier_id)
         ->join('products','products.id', '=', 'supliers__products.idProduct')->get();
-        var_dump(json_encode($products));
+       // var_dump(json_encode($products));
+        return $products;
     }
 
     /**
