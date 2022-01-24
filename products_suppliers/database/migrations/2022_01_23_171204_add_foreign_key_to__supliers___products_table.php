@@ -15,13 +15,7 @@ class AddForeignKeyToSupliersProductsTable extends Migration
     {
         Schema::enableForeignKeyConstraints();
         Schema::table('supliers__products', function (Blueprint $table) {
-            $table
-            ->foreign('idProduct')
-            ->references('id')
-            ->on('products')
-            ->onUpdate('RESTRICT')
-            ->onDelete('RESTRICT')
-        ;
+        $table->foreign('idProduct')->references('id')->on('products')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         $table->foreign('idSuplier')->references('id')->on('supliers')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
